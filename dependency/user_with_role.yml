@@ -1,0 +1,48 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Creation of IAM resources for LZ automation.
+
+Resources:
+  LZAutomation:
+    Type: 'AWS::IAM::User'
+    Properties:
+      UserName: rnd-lz-automation
+      Policies:
+        - PolicyName: AssumableRoles
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Resource:
+                  - arn:aws:iam::*:role/rnd-Terraform-LZ-Provisioning
+                Action:
+                  - 'sts:AssumeRole'
+
+  LZAutomationCredentials:
+    Type: AWS::IAM::AccessKey
+    Properties:
+      Status: Active
+      UserName: !Ref LZAutomation
+
+  LZAutomationCredentialsStored:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Name: !Sub /lz/credentials/${LZAutomation}
+      SecretString: !Sub '{"ACCESS_KEY":"${LZAutomationCredentials}","SECRET_KEY":"${LZAutomationCredentials.SecretAccessKey}"}'
+
+
+  LZAutomationRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: RND-Terraform-LZ-Provisioning
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - 'sts:AssumeRole'
+            Principal:
+              AWS: !Sub 'arn:aws:iam::${AWS::AccountId}:user/${LZAutomation}'
+      Description: Used by Terraform to provision LZ infrastructure
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/PowerUserAccess
+        - arn:aws:iam::aws:policy/IAMFullAccess

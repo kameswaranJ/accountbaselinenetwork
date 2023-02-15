@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Creation of IAM resources for LZ automation.
+
+Resources:
+  LZAutomationRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: STLA-Terraform-LZ-Provisioning
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              AWS: arn:aws:iam::893893329401:user/user-lz-automation
+            Action:
+              - 'sts:AssumeRole'
+      Description: Used by Terraform to provision LZ infrastructure
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/PowerUserAccess
+        - arn:aws:iam::aws:policy/IAMFullAccess

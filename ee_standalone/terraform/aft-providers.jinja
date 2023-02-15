@@ -1,0 +1,14 @@
+## Auto generated providers.tf ##
+## Updated on: {{ timestamp }} ##
+
+provider "aws" {
+  region = "eu-west-3"
+  assume_role {
+    role_arn    = "arn:aws:iam::780886351355:role/AWSAFTExecution"
+  }
+  default_tags {
+    tags = {
+      managed_by                  = "AFT"
+    }
+  }
+}
