@@ -1,0 +1,10 @@
+terraform:
+  roles:
+    hub: "arn:aws:iam::481307524072:role/STLA-Terraform-LZ-Provisioning"
+    deploy: "arn:aws:iam::673243674406:role/STLA-Terraform-LZ-Provisioning"
+    shared:
+      prod: "arn:aws:iam::008596671004:role/STLA-Terraform-LZ-Provisioning"
+      nonprod: "arn:aws:iam::068828669826:role/STLA-Terraform-LZ-Provisioning"
+
+alt_regions:
+  us-east-1: "us-east-1"
