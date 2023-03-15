@@ -11,7 +11,7 @@ Resources:
         Statement:
           - Effect: Allow
             Principal:
-              AWS: arn:aws:iam::673243674406:user/user-lz-automation
+              AWS: arn:aws:iam::893893329401:user/user-lz-automation
             Action:
               - 'sts:AssumeRole'
       Description: Used by Terraform to provision LZ infrastructure

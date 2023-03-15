@@ -5,7 +5,7 @@ Resources:
   LZAutomation:
     Type: 'AWS::IAM::User'
     Properties:
-      UserName: rnd-lz-automation
+      UserName: user-lz-automation
       Policies:
         - PolicyName: AssumableRoles
           PolicyDocument:
@@ -13,7 +13,7 @@ Resources:
             Statement:
               - Effect: Allow
                 Resource:
-                  - arn:aws:iam::*:role/rnd-Terraform-LZ-Provisioning
+                  - arn:aws:iam::*:role/STLA-Terraform-LZ-Provisioning
                 Action:
                   - 'sts:AssumeRole'
 
@@ -33,7 +33,7 @@ Resources:
   LZAutomationRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: RND-Terraform-LZ-Provisioning
+      RoleName: STLA-Terraform-LZ-Provisioning
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
