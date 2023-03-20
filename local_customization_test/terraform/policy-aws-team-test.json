@@ -1,0 +1,71 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Stmt1652798029750",
+            "Action": [
+                "aws-portal:*",
+                "ds:*",
+                "aws-marketplace:*",
+                "iam:CreateOpenIDConnectProvider",
+                "iam:CreateSAMLProvider",
+                "iam:CreateUser",
+                "iam:DeleteAccountAlias",
+                "iam:DeleteGroup",
+                "iam:DeleteUser",
+                "iam:CreateGroup",
+                "iam:GenerateCredentialReport",
+                "iam:GetCredentialReport",
+                "iam:UpdateUser",
+                "iam:AttachUserPolicy",
+                "iam:DeleteUserPolicy",
+                "iam:RemoveUserFromGroup",
+                "iam:AddUserToGroup",
+                "iam:PutUserPolicy",
+                "iam:DetachUserPolicy",
+                "ec2:AttachInternetGateway",
+                "ec2:CreateCustomerGateway",
+                "ec2:CreateInternetGateway",
+                "ec2:CreateNetworkAcl",
+                "ec2:CreateNetworkAclEntry",
+                "ec2:DeleteFlowLogs",
+                "ec2:DeleteInternetGateway",
+                "ec2:AcceptVpcPeeringConnection",
+                "ec2:AllocateAddress",
+                "ec2:CreateVpc",
+                "ec2:CreateSubnet*",
+                "ec2:CreatePublicIpv4Pool",
+                "ec2:CreateDefault*",
+                "ec2:CreateRoute*",
+                "ec2:ModifyTransitGateway"
+            ],
+            "Effect": "Deny",
+            "Resource": "*"
+        },
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Deny",
+            "Action": [
+                "codecommit:MergeBranchesByFastForward",
+                "codecommit:MergeBranchesBySquash",
+                "codecommit:MergeBranchesByThreeWay",
+                "codecommit:PutFile",
+                "codecommit:GitPush",
+                "codecommit:DeleteBranch"
+            ],
+            "Resource": "arn:aws:codecommit:*:*:*",
+            "Condition": {
+                "Null": {
+                    "codecommit:References": "false"
+                },
+                "StringEqualsIfExists": {
+                    "codecommit:References": [
+                        "refs/heads/main",
+                        "refs/heads/dev",
+                        "refs/heads/master"
+                    ]
+                }
+            }
+        }
+    ]
+}

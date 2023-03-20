@@ -4,4 +4,14 @@
 # Amazon Web Services, Inc. or Amazon Web Services EMEA SARL or both.
 #
 
-# Please add local customization in this file.
+
+terraform {
+  required_version = "~> 1.2.5"
+  required_providers {
+    # tflint-ignore: terraform_unused_required_providers
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.25.0"
+    }
+  }
+}

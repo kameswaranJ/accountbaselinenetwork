@@ -3,5 +3,3 @@
 # http://aws.amazon.com/agreement or other written agreement between Customer and either
 # Amazon Web Services, Inc. or Amazon Web Services EMEA SARL or both.
 #
-
-# Please add local customization in this file.
